@@ -32,7 +32,7 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * from course";
+$sql = "SELECT * from Actor";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -41,11 +41,11 @@ if ($result->num_rows > 0) {
 ?>
   <tr>
     <td><?=$row["ActorID"]?></td>
-    <td><?=$row["Actor_Name"]?></td>
+    <td><?=$row["ActorName"]?></td>
     <td><?=$row["number"]?></td>
     <td><?=$row["description"]?></td>
     <td>
-      <form method="post" action="course-section.php">
+      <form method="post" action="movie-actor.php">
         <input type="hidden" name="id" value="<?=$row["course_id"]?>" />
         <input type="submit" value="Sections" />
       </form>
