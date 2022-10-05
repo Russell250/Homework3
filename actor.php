@@ -23,7 +23,7 @@
 $servername = "localhost:3306";
 $username = "russtayl_sample";
 $password = "0w_zeP}]OVy0";
-$dbname = "projecto_homework3";
+$dbname = "russtayl_sample";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
