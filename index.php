@@ -16,10 +16,10 @@
   </thead>
   <tbody>
     <?php
-$servername = "sample";
-$username = "russtayl_suser";
+$servername = "localhost:3306";
+$username = "russtayl_sample";
 $password = "U9@hEQ9(~)u{";
-$dbname = "projecto_homework3";
+$dbname = "russtayl_sample";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -28,7 +28,7 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT PreFix, Number, Description";
+$sql = "SELECT * from movie";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -36,8 +36,8 @@ if ($result->num_rows > 0) {
   while($row = $result->fetch_assoc()) {
 ?>
   <tr>
-    <td><?=$row["instructor_id"]?></td>
-    <td><?=$row["instructor_name"]?></td>
+    <td><?=$row["movieid"]?></td>
+    <td><?=$row["moviename"]?></td>
   </tr>
 <?php
   }
