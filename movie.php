@@ -18,8 +18,8 @@
   <tbody>
     <?php
 $servername = "localhost:3006";
-$username = "russtayl_sample";
-$password = "0w_zeP}]OVy0";
+$username = "russtayl_suser";
+$password = "ombfAc]S@9%M";
 $dbname = "russtayl_sample";
 
 // Create connection
