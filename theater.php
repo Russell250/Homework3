@@ -18,8 +18,8 @@
   <tbody>
     <?php
 $servername = "localhost:3006";
-$username = "russtayl_sample";
-$password = "0w_zeP}]OVy0";
+$username = "russtayl_suser";
+$password = "ombfAc]S@9%M";
 $dbname = "russtayl_sample";
 
 // Create connection
@@ -37,8 +37,8 @@ if ($result->num_rows > 0) {
   while($row = $result->fetch_assoc()) {
 ?>
   <tr>
-    <td><?=$row["instructor_id"]?></td>
-    <td><a href="instructor-section.php?id=<?=$row["instructor_id"]?>"><?=$row["instructor_name"]?></a></td>
+    <td><?=$row["movieid"]?></td>
+    <td><a href="movie-actor.php?id=<?=$row["moviename"]?>"><?=$row["movieid"]?></a></td>
   </tr>
 <?php
   }
