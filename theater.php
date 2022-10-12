@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <?php require_once("header.php"); ?>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Theater</title>
@@ -29,7 +30,7 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * from theater";
+$sql = "SELECT * from Theater";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -38,7 +39,7 @@ if ($result->num_rows > 0) {
 ?>
   <tr>
     <td><?=$row["movieid"]?></td>
-    <td><a href="movie-actor.php?id=<?=$row["moviename"]?>"><?=$row["movieid"]?></a></td>
+    <td><a href="movie-actor.php?id=<?=$row["MovieName"]?>"><?=$row["MovieID"]?></a></td>
   </tr>
 <?php
   }
