@@ -43,7 +43,7 @@ if ($result->num_rows > 0) {
     <td>
       <form method="post" action="movie-actor.php">
         <input type="hidden" name="id" value="<?=$row["ActorID"]?>" />
-        <input type="submit" value="Movies" color ="blue" />
+        <input type="submit" value="Movies"/>
       </form>
     </td>
   </tr>
