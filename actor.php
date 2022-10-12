@@ -13,8 +13,6 @@
     <tr>
       <th>Actor ID</th>
       <th>Actor Name</th>
-      <th>Number</th>
-      <th>Description</th>
       <th></th>
     </tr>
   </thead>
@@ -32,7 +30,7 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * from Actor";
+$sql = "SELECT * from Actors";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -42,8 +40,6 @@ if ($result->num_rows > 0) {
   <tr>
     <td><?=$row["ActorID"]?></td>
     <td><?=$row["ActorName"]?></td>
-    <td><?=$row["number"]?></td>
-    <td><?=$row["description"]?></td>
     <td>
       <form method="post" action="movie-actor.php">
         <input type="hidden" name="id" value="<?=$row["course_id"]?>" />
