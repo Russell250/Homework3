@@ -17,7 +17,7 @@
   </thead>
   <tbody>
     <?php
-$servername = "localhost:3006";
+$servername = "localhost";
 $username = "russtayl_suser";
 $password = "?D(]XIQOP;yv";
 $dbname = "russtayl_sample";
