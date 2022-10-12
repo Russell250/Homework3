@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sections</title>
     < rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
   </head>
   <body>
@@ -33,7 +32,7 @@ if ($conn->connect_error) {
 }
 $cid = $_POST['id'];
 //echo $iid;
-$sql = "select movieid, moviename, moviedesc, a.actorid, a.actorname  from Actors a join Movies m on a.ActorID = m.ActorID" . $cid;
+$sql = "select MovieID, MovieName, MovieDesc, a.ActorID, a.ActorName from Actors a join Movies m on a.ActorID = m.ActorID where a.ActorID" . $row["ActorID"];
 //echo $sql;
     $result = $conn->query($sql);
 
@@ -42,7 +41,7 @@ if ($result->num_rows > 0) {
   while($row = $result->fetch_assoc()) {
 ?>
   <tr>
-    <td><?=$row["movieid"]?></td>
+    <td><?=$row["MovieID"]?></td>
     <td><?=$row["moviename"]?></td>
     <td><?=$row["moviedesc"]?></td>
     <td><?=$row["actorid"]?></td>
