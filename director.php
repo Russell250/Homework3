@@ -21,8 +21,8 @@
   <tbody>
     <?php
 $servername = "localhost";
-$username = "russtayl_suser";
-$password = "?D(]XIQOP;yv";
+$username = "russtayl_user";
+$password = "RussTaylor2000";
 $dbname = "russtayl_sample";
 
 // Create connection
