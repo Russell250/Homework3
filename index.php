@@ -36,8 +36,8 @@ if ($result->num_rows > 0) {
   while($row = $result->fetch_assoc()) {
 ?>
   <tr>
-    <td><?=$row["movieid"]?></td>
-    <td><?=$row["moviename"]?></td>
+    <td><?=$row["MovieID"]?></td>
+    <td><?=$row["MovieName"]?></td>
   </tr>
 <?php
   }
