@@ -7,7 +7,7 @@
     < rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
   </head>
   <body>
-    <h1>Sections</h1>
+    <h1>Movie Details</h1>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -33,7 +33,7 @@ if ($conn->connect_error) {
 }
 $cid = $_POST['id'];
 //echo $iid;
-$sql = "select movieid, moviename, moviedesc, a.actorid, a.actorname  from actor a join movie m on a.actorid = m.actorid" . $cid;
+$sql = "select movieid, moviename, moviedesc, a.actorid, a.actorname  from Actors a join Movies m on a.ActorID = m.ActorID" . $cid;
 //echo $sql;
     $result = $conn->query($sql);
 
