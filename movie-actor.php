@@ -35,10 +35,10 @@ if ($result->num_rows > 0) {
 ?>
   <tr>
     <td><?=$row["MovieID"]?></td>
-    <td><?=$row["moviename"]?></td>
-    <td><?=$row["moviedesc"]?></td>
-    <td><?=$row["actorid"]?></td>
-    <td><?=$row["actorname"]?></td>
+    <td><?=$row["MovieName"]?></td>
+    <td><?=$row["MovieDesc"]?></td>
+    <td><?=$row["ActorID"]?></td>
+    <td><?=$row["ActorName"]?></td>
   </tr>
 <?php
   }
