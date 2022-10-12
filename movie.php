@@ -19,7 +19,7 @@
     <?php
 $servername = "localhost:3006";
 $username = "russtayl_suser";
-$password = "ombfAc]S@9%M";
+$password = "?D(]XIQOP;yv";
 $dbname = "russtayl_sample";
 
 // Create connection
