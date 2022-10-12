@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <?php require_once("header.php"); ?>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Movie</title>
@@ -29,7 +30,7 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * from movie";
+$sql = "SELECT * from Movies";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
