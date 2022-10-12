@@ -18,7 +18,7 @@
     <?php
 $servername = "localhost";
 $username = "russtayl_suser";
-$password = "(bxj6KKKgCl[";
+$password = "?D(]XIQOP;yv";
 $dbname = "russtayl_sample";
 
 // Create connection
