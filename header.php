@@ -17,9 +17,6 @@
           <a class="nav-link active" aria-current="page" href="index.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="movie-actor.php">Movie-Actor</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="actor.php">Actor</a>
         </li>
          <li class="nav-item">
