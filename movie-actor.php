@@ -25,7 +25,7 @@ if ($conn->connect_error) {
 }
 $cid = $_POST['id'];
 //echo $iid;
-$sql = "select MovieID, MovieName, MovieDesc, a.ActorID, a.ActorName from Actors a join Movies m on a.ActorID = m.ActorID where a.ActorID=" . $row["ActorID"];
+$sql = "select MovieID, MovieName, MovieDesc, a.ActorID, a.ActorName from Actors a join Movies m on a.ActorID = m.ActorID where a.ActorID=" . $cid;
 //echo $sql;
     $result = $conn->query($sql);
 
