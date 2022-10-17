@@ -40,7 +40,7 @@ if ($result->num_rows > 0) {
 ?>
   <tr>
     <td><?=$row["ActorID"]?></td>
-    <td><?=$row["ActorName"]?></td>
+    <td><a href="actorfile.php?id=<?=$row["ActorID"]?>"><?=$row["ActorName"]?></a></td>
     <td>
       <form method="post" action="movie-actor.php">
         <input type="hidden" name="id" value="<?=$row["ActorID"]?>" />
