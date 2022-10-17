@@ -31,8 +31,20 @@ if ($conn->connect_error) {
     
 $mid = $_GET["id"];
 $sql = "SELECT MovieName From Movie where ActorID =" . $mid;
-$result = 
+$result = result = $conn->query($sql);
 
  if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
+?>
+    <tr>
+      <td><?=$row["MovieName"]?></td>
+    </tr>
+    <?php
+    }
+ } else {
+   echo "0 results";
+ }
+    $conn->close();
+    ?>
+    
