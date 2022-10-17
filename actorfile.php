@@ -30,7 +30,7 @@ if ($conn->connect_error) {
 }
     
 $mid = $_GET["id"];
-$sql = "SELECT MovieName From Movie where ActorID =" . $mid;
+$sql = "SELECT MovieName From Movies where ActorID =" . $mid;
 $result = $conn->query($sql);
 
  if ($result->num_rows > 0) {
