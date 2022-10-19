@@ -10,9 +10,9 @@
     
 <?php
 $servername = "localhost";
-$username = "russtayl_suser";
-$password = "0w_zeP}]OVy0";
-$dbname = "projecto_homework3";
+$username = "russtayl_user";
+$password = "RussTaylor2000";
+$dbname = "russtayl_sample";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
