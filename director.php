@@ -41,12 +41,6 @@ if ($result->num_rows > 0) {
   <tr>
     <td><?=$row["DirectorID"]?></td>
     <td><?=$row["DirectorName"]?></td>
-    <td>
-      <form method="post" action="movie-actor.php">
-        <input type="hidden" name="id" value="<?=$row["ActorID"]?>" />
-        <input type="submit" value="Sections" />
-      </form>
-    </td>
   </tr>
 <?php
   }
