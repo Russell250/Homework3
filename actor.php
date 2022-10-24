@@ -49,7 +49,7 @@ if ($conn->connect_error) {
       break;
   }
 }
-?>
+
 
 $sql = "SELECT * from Actors";
 $result = $conn->query($sql);
@@ -101,7 +101,7 @@ if ($result->num_rows > 0) {
     </td>
   </tr>
 <?php
-    
+        } 
  } else {
   echo "0 results";
 }
