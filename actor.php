@@ -34,7 +34,7 @@ if ($conn->connect_error) {
       echo '<div class="alert alert-success" role="alert">New Actor added.</div>';
       break;
     case 'Edit':
-      $sqlEdit = "update Actors set ActorName=? where ActorName=?";
+      $sqlEdit = "update Actors set ActorName=? where ActorID=?";
       $stmtEdit = $conn->prepare($sqlEdit);
       $stmtEdit->bind_param("si", $_POST['iName'], $_POST['iid']);
       $stmtEdit->execute();
@@ -69,7 +69,7 @@ if ($result->num_rows > 0) {
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="editActors<?=$row["ActorID"]?>Label">Edit Actor</h1>
+                      <h1 class="modal-title fs-5" id="editActors<?=$row["ActorName"]?>Label">Edit Actor</h1>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -79,7 +79,7 @@ if ($result->num_rows > 0) {
                           <input type="text" class="form-control" id="editActors<?=$row["ActorID"]?>Name" aria-describedby="editActors<?=$row["ActorID"]?>Help" name="iName" value="<?=$row['ActorName']?>">
                           <div id="editActors<?=$row["ActorID"]?>Help" class="form-text">Enter the Actors name.</div>
                         </div>
-                        <input type="hidden" name="iid" value="<?=$row['ActorName']?>">
+                        <input type="hidden" name="iName" value="<?=$row['ActorName']?>">
                         <input type="hidden" name="saveType" value="Edit">
                         <input type="submit" class="btn btn-primary" value="Submit">
                       </form>
