@@ -34,7 +34,7 @@ if ($conn->connect_error) {
       echo '<div class="alert alert-success" role="alert">New Actor added.</div>';
       break;
     case 'Edit':
-      $sqlEdit = "update Actors set ActorName=? where ActorID=?";
+      $sqlEdit = "update Actors set ActorName=? where ActorName=?";
       $stmtEdit = $conn->prepare($sqlEdit);
       $stmtEdit->bind_param("si", $_POST['iName'], $_POST['iid']);
       $stmtEdit->execute();
