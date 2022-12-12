@@ -25,6 +25,9 @@
         <li class="nav-item">
           <a class="nav-link" href="theater.php">Theather</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="movie.php">Movie</a>
+        </li>
       </ul>
     </div>
   </div>
