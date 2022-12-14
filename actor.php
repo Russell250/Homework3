@@ -91,7 +91,7 @@ $dbname = "russtayl_sample";
             //echo $iid;
         ?>
             <label for="POSTID" class="form-label">Actors</label>
-            <select class="form-select" aria-label="Select product" id=" POSTID  " name="ID">
+            <select class="form-select" aria-label="Select product" id=" POSTID  " name="saveType">
        
         <?php
             $sql = "select * from Actors";
