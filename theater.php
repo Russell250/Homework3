@@ -41,7 +41,7 @@ if ($conn->connect_error) {
       $stmtEdit = $conn->prepare($sqlEdit);
       $stmtEdit->bind_param("si", $_POST['iName'], $_POST['iid']);
       $stmtEdit->execute();
-      echo '<div class="alert alert-success" role="alert"> Theater edited.</div>';
+      echo '<div class="alert alert-success" role="alert">Theater edited.</div>';
       break;
     case 'Delete':
       $sqlDelete = "delete from Theater where TheaterID=?";
