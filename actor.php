@@ -73,16 +73,40 @@ if ($result->num_rows > 0) {
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <form method="post" action="">
-                        <div class="mb-3">
-                          <label for="editActors<?=$row["ActorID"]?>Name" class="form-label">Name</label>
-                          <input type="text" class="form-control" id="editActors<?=$row["ActorID"]?>Name" aria-describedby="editActors<?=$row["ActorID"]?>Help" name="iName" value="<?=$row['ActorName']?>">
-                          <div id="editActors<?=$row["ActorID"]?>Help" class="form-text">Enter the Actors name.</div>
-                        </div>
-                        <input type="hidden" name="iid" value="<?=$row['ActorID']?>">
-                        <input type="hidden" name="saveType" value="Edit">
-                        <input type="submit" class="btn btn-primary" value="Submit">
-                      </form>
+                      <form action="actor.php" method="post">
+
+        <?php
+$servername = "localhost";
+$username = "russtayl_user";
+$password = "RussTaylor2000";
+$dbname = "russtayl_sample";
+
+
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            // Check connection
+            if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+            }
+            //echo $iid;
+        ?>
+            <label for="POSTID" class="form-label">TEXT</label>
+            <select class="form-select" aria-label="Select product" id=" POSTID  " name="ID">
+       
+        <?php
+            $sql = "select ActorName from Actors";
+            $result = $conn->query($sql);
+            while($row = $result->fetch_assoc()) 
+           {
+                ?>
+                    <option value="<?=$row['ActorID']?>"><?=$row['ActorNAME']?></option>
+                <?php
+            }
+            $conn->close();
+        ?>
+            </select>
+        <input type="submit">
+    </form>
                     </div>
                   </div>
                 </div>
