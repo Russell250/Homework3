@@ -107,8 +107,9 @@ $dbname = "russtayl_sample";
            
         ?>
             </select>
-        <input type="submit" <?php echo $_POST["saveType"]; ?>>
                           
+        <input type="submit" >
+                          <?php echo $_POST["saveType"]; ?>
                         </form>
                         
                     </div>
