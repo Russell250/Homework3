@@ -22,6 +22,31 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
+      if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  switch ($_POST['saveType']) {
+    case 'Add':
+      $sqlAdd = "insert into Director (DirectorName) value (?)";
+      $stmtAdd = $conn->prepare($sqlAdd);
+      $stmtAdd->bind_param("s", $_POST['iName']);
+      $stmtAdd->execute();
+      echo '<div class="alert alert-success" role="alert">New Director added.</div>';
+      break;
+    case 'Edit':
+      $sqlEdit = "update Director set DirectorName=? where DirectorID=?";
+      $stmtEdit = $conn->prepare($sqlEdit);
+      $stmtEdit->bind_param("si", $_POST['iName'], $_POST['iid']);
+      $stmtEdit->execute();
+      echo '<div class="alert alert-success" role="alert">Director edited.</div>';
+      break;
+    case 'Delete':
+      $sqlDelete = "delete from Director where DirectorID=?";
+      $stmtDelete = $conn->prepare($sqlDelete);
+      $stmtDelete->bind_param("i", $_POST['iid']);
+      $stmtDelete->execute();
+      echo '<div class="alert alert-success" role="alert">Director deleted.</div>';
+      break;
+  }
+}
 
 $sql = "SELECT * from Director";
 $result = $conn->query($sql);
@@ -95,7 +120,7 @@ if ($result->num_rows > 0) {
                 <div class="mb-3">
                   <label for="ActorName" class="form-label">Name</label>
                   <input type="text" class="form-control" id="ActorName" aria-describedby="nameHelp" name="iName">
-                  <div id="nameHelp" class="form-text">Enter the Item's name.</div>
+                  <div id="nameHelp" class="form-text">Enter the Directors's name.</div>
                 </div>
                 <input type="hidden" name="saveType" value="Add">
                 <button type="submit" class="btn btn-primary">Submit</button>
