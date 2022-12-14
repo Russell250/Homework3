@@ -125,7 +125,7 @@ if ($result->num_rows > 0) {
                 <div class="mb-3">
                   <label for="ActorName" class="form-label">Name</label>
                   <input type="text" class="form-control" id="ActorName" aria-describedby="nameHelp" name="iName">
-                  <div id="nameHelp" class="form-text">Enter the Director's name.</div>
+                  <div id="nameHelp" class="form-text">Enter the Theater's name.</div>
                 </div>
                 <input type="hidden" name="saveType" value="Add">
                 <button type="submit" class="btn btn-primary">Submit</button>
