@@ -75,16 +75,42 @@ if ($result->num_rows > 0) {
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <form method="post" action="">
-                        <div class="mb-3">
-                          <label for="editActors<?=$row["TheaterID"]?>Name" class="form-label">Name</label>
-                          <input type="text" class="form-control" id="editActors<?=$row["TheaterID"]?>Name" aria-describedby="editActors<?=$row["TheaterID"]?>Help" name="iName" value="<?=$row['TheaterName']?>">
-                          <div id="editActors<?=$row["TheaterID"]?>Help" class="form-text">Enter the Theater's name.</div>
-                        </div>
-                        <input type="hidden" name="iid" value="<?=$row['TheaterID']?>">
-                        <input type="hidden" name="saveType" value="Edit">
-                        <input type="submit" class="btn btn-primary" value="Submit">
-                      </form>
+                      <form>
+                      <form action="theater.php" method="post">
+
+        <?php
+$servername = "localhost";
+$username = "russtayl_user";
+$password = "RussTaylor2000";
+$dbname = "russtayl_sample";
+
+
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            // Check connection
+            if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+            }
+            //echo $iid;
+        ?>
+            <label for="POSTID" class="form-label">Theaters</label>
+            <select class="form-select" aria-label="Select product" id=" POSTID  " name="saveType">
+       
+        <?php
+            $sql = "select * from Theaters";
+            $result = $conn->query($sql);
+            while($row = $result->fetch_assoc()) 
+           {
+                ?>
+                    <option value="<?=$row['TheaterID']?>"><?=$row['TheaterName']?></option>
+                <?php
+            }
+           
+        ?>
+            </select>
+        <input type="submit">
+    </form>
+                        </form>
                     </div>
                   </div>
                 </div>
