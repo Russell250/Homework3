@@ -102,7 +102,7 @@ $dbname = "russtayl_sample";
                     <option value="<?=$row['ActorID']?>"><?=$row['ActorNAME']?></option>
                 <?php
             }
-            $conn->close();
+           
         ?>
             </select>
         <input type="submit">
