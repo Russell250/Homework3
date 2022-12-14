@@ -27,6 +27,31 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
+      if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  switch ($_POST['saveType']) {
+    case 'Add':
+      $sqlAdd = "insert into Theater (TheaterName) value (?)";
+      $stmtAdd = $conn->prepare($sqlAdd);
+      $stmtAdd->bind_param("s", $_POST['iName']);
+      $stmtAdd->execute();
+      echo '<div class="alert alert-success" role="alert">New Theater added.</div>';
+      break;
+    case 'Edit':
+      $sqlEdit = "update Theater set TheaterName=? where TheaterID=?";
+      $stmtEdit = $conn->prepare($sqlEdit);
+      $stmtEdit->bind_param("si", $_POST['iName'], $_POST['iid']);
+      $stmtEdit->execute();
+      echo '<div class="alert alert-success" role="alert"> Theater edited.</div>';
+      break;
+    case 'Delete':
+      $sqlDelete = "delete from Theater where TheaterID=?";
+      $stmtDelete = $conn->prepare($sqlDelete);
+      $stmtDelete->bind_param("i", $_POST['iid']);
+      $stmtDelete->execute();
+      echo '<div class="alert alert-success" role="alert">Theater deleted.</div>';
+      break;
+  }
+}
 
 $sql = "SELECT * from Theaters";
 $result = $conn->query($sql);
