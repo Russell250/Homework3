@@ -12,6 +12,7 @@
     <tr>
       <th>ID</th>
       <th>Name</th>
+        <th>Location</th>
     </tr>
   </thead>
   <tbody>
@@ -30,16 +31,16 @@ if ($conn->connect_error) {
       if ($_SERVER["REQUEST_METHOD"] == "POST") {
   switch ($_POST['saveType']) {
     case 'Add':
-      $sqlAdd = "insert into Theaters (TheaterName) value (?)";
+      $sqlAdd = "insert into Theaters (TheaterName, TheaterLocation) value (?,?)";
       $stmtAdd = $conn->prepare($sqlAdd);
-      $stmtAdd->bind_param("s", $_POST['iName']);
+      $stmtAdd->bind_param("ss", $_POST['iName'], $_POST['lid']);
       $stmtAdd->execute();
       echo '<div class="alert alert-success" role="alert">New Theater added.</div>';
       break;
     case 'Edit':
-      $sqlEdit = "update Theaters set TheaterName=? where TheaterID=?";
+      $sqlEdit = "update Theaters set TheaterName=?, TheaterLocation=? where TheaterID=?";
       $stmtEdit = $conn->prepare($sqlEdit);
-      $stmtEdit->bind_param("si", $_POST['tName'], $_POST['iid']);
+      $stmtEdit->bind_param("ssi", $_POST['tName'], $_POST['lid'], $_POST['iid']);
       $stmtEdit->execute();
       echo '<div class="alert alert-success" role="alert">Theater edited.</div>';
       break;
@@ -63,64 +64,56 @@ if ($result->num_rows > 0) {
   <tr>
     <td><?=$row["TheaterID"]?></td>
     <td><?=$row["TheaterName"]?></td>
+    <td><?=$row["TheaterLocation"]?></td>
     <td>
          <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#editActors<?=$row["TheaterID"]?>">
                 Edit
               </button>
-              <div class="modal fade" id="editActors<?=$row["TheaterID"]?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editActors<?=$row["TheaterID"]?>Label" aria-hidden="true">
+              <div class="modal fade" id="editTheater<?=$row["TheaterID"]?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editTheater<?=$row["TheaterId"]?>Label" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="editActors<?=$row["TheaterID"]?>Label">Edit Theater</h1>
+                      <h1 class="modal-title fs-5" id="editTheater<?=$row["Theater"]?>Label">Edit Theater</h1>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         
-                      <form action="theater.php" method="post">
+                      <form action="" method="post">
                         <div class="mb-3">
                           <label for="editTheater<?=$row["TheaterID"]?>Name" class="form-label">Theater Name</label>
-                          <input type="text" class="form-control" id="editTheater<?=$row["TheaterID"]?>Name" aria-describedby="editTheater<?=$row["manager_id"]?>Help" name="tName" value="<?=$row['TheaterName']?>">
-                          <div id="editTheater<?=$row["TheaterID"]?>Help" class="form-text">Enter the Theater's name.</div>
-        <?php
-$servername = "localhost";
-$username = "russtayl_user";
-$password = "RussTaylor2000";
-$dbname = "russtayl_sample";
-
-
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            // Check connection
-            if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-            }
-            //echo $iid;
-        ?>
-            <label for="POSTID" class="form-label">Theaters</label>
-            <select class="form-select" aria-label="Select product" id=" POSTID  " name="saveType">
+                          <input type="text" class="form-control" id="editTheater<?=$row["TheaterID"]?>Name" aria-describedby="editTheater<?=$row["TheaterID"]?>Help" name="tName" value="<?=$row['TheaterName']?>">
+                          <div id="editTheater<?=$row["TheaterID"]?>Help" class="form-text">Enter the Theater's name.</div
+                              <div class="mb-3">
+                           <label for="locationList" class="form-label">Location</label>
+                          <select class="form-select" aria-label="Select Location" id="locationList" name="lid">
+                          <?php
        
-        <?php
-            $sql = "select * from Theaters";
+            $sql = "select * from Theaters order by TheaterLocation";
             $result = $conn->query($sql);
-            while($row = $result->fetch_assoc()) 
-           {
-                ?>
-                    <option value="<?=$row['TheaterID']?>"><?=$row['TheaterName']?></option>
-                <?php
+            while($row = $result->fetch_assoc()) {
+      if ($row['TheaterID'] == $row['TheaterID']) {
+        $selText = " selected";
+      } else {
+        $selText = "";
+      }
+?>
+  <option value="<?=$locationRow['TheaterID']?>"<?=$selText?>><?=$locationRow['TheaterLocation']?></option>
+<?php
+                
             }
            
         ?>
             </select>
-                          
-        <input type="submit" >
-                          <?php echo $_POST["saveType"]; ?>
-                        </form>
-                        
+                   </div>
+                        <input type="hidden" name="iid" value="<?=$row['TheaterID']?>">
+                        <input type="hidden" name="saveType" value="Edit">
+                        <input type="submit" class="btn btn-primary" value="Submit">
+                      </form>
                     </div>
                   </div>
                 </div>
               </div>
-            </td>
+            </td>       
             <td>
                 <form method="post" action="">
                 <input type="hidden" name="iid" value="<?=$row["TheaterID"]?>" />
@@ -154,9 +147,12 @@ $dbname = "russtayl_sample";
             <div class="modal-body">
               <form method="post" action="">
                 <div class="mb-3">
-                  <label for="ActorName" class="form-label">Name</label>
-                  <input type="text" class="form-control" id="ActorName" aria-describedby="nameHelp" name="iName">
+                   <label for="TheaterName" class="form-label">Theater Name</label>
+                  <input type="text" class="form-control" id="iName" aria-describedby="nameHelp" name="iName">
                   <div id="nameHelp" class="form-text">Enter the Theater's name.</div>
+                  <label for="supervisorID" class="form-label">Theater Location</label>
+                  <input type="text" class="form-control" id="lid" aria-describedby="nameHelp" name="lid">
+                  <div id="nameHelp" class="form-text">Enter the Theater's Location.</div>
                 </div>
                 <input type="hidden" name="saveType" value="Add">
                 <button type="submit" class="btn btn-primary">Submit</button>
