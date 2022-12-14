@@ -75,9 +75,8 @@ if ($result->num_rows > 0) {
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <form>
+                        
                       <form action="theater.php" method="post">
-
         <?php
 $servername = "localhost";
 $username = "russtayl_user";
@@ -109,8 +108,8 @@ $dbname = "russtayl_sample";
         ?>
             </select>
         <input type="submit">
-    </form>
                         </form>
+                        <?php echo $_POST["saveType"]; ?>
                     </div>
                   </div>
                 </div>
