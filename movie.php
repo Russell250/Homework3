@@ -17,9 +17,14 @@
       <th>Movie Name</th>
       <th>Movie Desc</th>
       <th></th>
-      <th></th>
     </tr>
     <tbody>
+       <div class="row row-cols-1 row-cols-md-6 g-4">
+  <?php
+$servername = "localhost";
+$username = "russtayl_user";
+$password = "RussTaylor2000";
+$dbname = "russtayl_vaca";
     // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
@@ -103,7 +108,7 @@ if ($result->num_rows > 0) {
       </form>
     </td>
   </tr>
-<?php>
+<?php
       
       }
  } else {
