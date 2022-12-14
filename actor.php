@@ -73,42 +73,7 @@ if ($result->num_rows > 0) {
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
-                      <form action="actor.php" method="post">
-
-        <?php
-$servername = "localhost";
-$username = "russtayl_user";
-$password = "RussTaylor2000";
-$dbname = "russtayl_sample";
-
-
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            // Check connection
-            if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-            }
-            //echo $iid;
-        ?>
-            <label for="POSTID" class="form-label">Actors</label>
-            <select class="form-select" aria-label="Select product" id=" POSTID  " name="saveType">
-       
-        <?php
-            $sql = "select * from Actors";
-            $result = $conn->query($sql);
-            while($row = $result->fetch_assoc()) 
-           {
-                ?>
-                    <option value="<?=$row['ActorID']?>"><?=$row['ActorName']?></option>
-                <?php
-            }
-           
-        ?>
-            </select>
-        <input type="submit">
-    </form>
-                        </form>
+                        
                     </div>
                   </div>
                 </div>
