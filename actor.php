@@ -90,7 +90,7 @@ $dbname = "russtayl_sample";
             }
             //echo $iid;
         ?>
-            <label for="POSTID" class="form-label">TEXT</label>
+            <label for="POSTID" class="form-label">Actors</label>
             <select class="form-select" aria-label="Select product" id=" POSTID  " name="ID">
        
         <?php
@@ -99,7 +99,7 @@ $dbname = "russtayl_sample";
             while($row = $result->fetch_assoc()) 
            {
                 ?>
-                    <option value="<?=$row['ActorID']?>"><?=$row['ActorNAME']?></option>
+                    <option value="<?=$row['ActorID']?>"><?=$row['ActorName']?></option>
                 <?php
             }
            
