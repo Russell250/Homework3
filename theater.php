@@ -48,7 +48,7 @@ if ($conn->connect_error) {
       $stmtDelete = $conn->prepare($sqlDelete);
       $stmtDelete->bind_param("i", $_POST['iid']);
       $stmtDelete->execute();
-      echo '<div class="alert alert-success" role="alert">Theater deleted.</div>';
+      echo '<div class="alert alert-success" role="alert">Item deleted.</div>';
       break;
   }
 }
