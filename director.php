@@ -87,15 +87,15 @@ if ($result->num_rows > 0) {
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="addActorsLabel">Add Item</h1>
+              <h1 class="modal-title fs-5" id="addActorsLabel">Add Director</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <form method="post" action="">
                 <div class="mb-3">
-                  <label for="ActorName" class="form-label">Name</label>
+                  <label for="DirectorName" class="form-label">Name</label>
                   <input type="text" class="form-control" id="ActorName" aria-describedby="nameHelp" name="iName">
-                  <div id="nameHelp" class="form-text">Enter the Director's name.</div>
+                  <div id="nameHelp" class="form-text">Enter the Directors's name.</div>
                 </div>
                 <input type="hidden" name="saveType" value="Add">
                 <button type="submit" class="btn btn-primary">Submit</button>
