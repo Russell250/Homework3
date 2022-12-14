@@ -39,7 +39,7 @@ if ($conn->connect_error) {
     case 'Edit':
       $sqlEdit = "update Theaters set TheaterName=? where TheaterID=?";
       $stmtEdit = $conn->prepare($sqlEdit);
-      $stmtEdit->bind_param("si", $_POST['iName'], $_POST['iid']);
+      $stmtEdit->bind_param("si", $_POST['tName'], $_POST['iid']);
       $stmtEdit->execute();
       echo '<div class="alert alert-success" role="alert">Theater edited.</div>';
       break;
@@ -71,12 +71,16 @@ if ($result->num_rows > 0) {
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="editActors<?=$row["TheaterName"]?>Label">Edit Theater</h1>
+                      <h1 class="modal-title fs-5" id="editActors<?=$row["TheaterID"]?>Label">Edit Theater</h1>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         
                       <form action="theater.php" method="post">
+                        <div class="mb-3">
+                          <label for="editTheater<?=$row["TheaterID"]?>Name" class="form-label">Theater Name</label>
+                          <input type="text" class="form-control" id="editTheater<?=$row["TheaterID"]?>Name" aria-describedby="editTheater<?=$row["manager_id"]?>Help" name="tName" value="<?=$row['TheaterName']?>">
+                          <div id="editTheater<?=$row["TheaterID"]?>Help" class="form-text">Enter the Theater's name.</div>
         <?php
 $servername = "localhost";
 $username = "russtayl_user";
