@@ -54,7 +54,7 @@ if ($result->num_rows > 0) {
                         <div class="mb-3">
                           <label for="editActors<?=$row["TheaterID"]?>Name" class="form-label">Name</label>
                           <input type="text" class="form-control" id="editActors<?=$row["TheaterID"]?>Name" aria-describedby="editActors<?=$row["TheaterID"]?>Help" name="iName" value="<?=$row['TheaterName']?>">
-                          <div id="editActors<?=$row["DirectorID"]?>Help" class="form-text">Enter the Theater's name.</div>
+                          <div id="editActors<?=$row["TheaterID"]?>Help" class="form-text">Enter the Theater's name.</div>
                         </div>
                         <input type="hidden" name="iid" value="<?=$row['TheaterID']?>">
                         <input type="hidden" name="saveType" value="Edit">
