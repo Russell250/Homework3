@@ -65,22 +65,22 @@ if ($result->num_rows > 0) {
     <td><?=$row["MovieName"]?></td>
     <td><?=$row["MovieDesc"]?></td>
     <td>
-         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#editActors<?=$row["MovieID"]?>">
+         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#editMovies<?=$row["MovieID"]?>">
                 Edit
               </button>
-              <div class="modal fade" id="editActors<?=$row["MovieID"]?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editActors<?=$row["MovieID"]?>Label" aria-hidden="true">
+              <div class="modal fade" id="editMovies<?=$row["MovieID"]?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editMovies<?=$row["MovieID"]?>Label" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="editActors<?=$row["MovieName"]?>Label">Edit Movie</h1>
+                      <h1 class="modal-title fs-5" id="editMovies<?=$row["MovieName"]?>Label">Edit Movie</h1>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                       <form method="post" action="">
                         <div class="mb-3">
-                          <label for="editActors<?=$row["MovieID"]?>Name" class="form-label">Name</label>
-                          <input type="text" class="form-control" id="editActors<?=$row["MovieID"]?>Name" aria-describedby="editActors<?=$row["MovieID"]?>Help" name="iName" value="<?=$row['MovieName']?>">
-                          <div id="editActors<?=$row["MovieID"]?>Help" class="form-text">Enter the Movie name.</div>
+                          <label for="editMovies<?=$row["MovieID"]?>Name" class="form-label">Name</label>
+                          <input type="text" class="form-control" id="editMovies<?=$row["MovieID"]?>Name" aria-describedby="editMovies<?=$row["MovieID"]?>Help" name="iName" value="<?=$row['MovieName']?>">
+                          <div id="editMovies<?=$row["MovieID"]?>Help" class="form-text">Enter the Movie name.</div>
                         </div>
                         <input type="hidden" name="iid" value="<?=$row['MovieID']?>">
                         <input type="hidden" name="saveType" value="Edit">
@@ -103,8 +103,8 @@ if ($result->num_rows > 0) {
       </form>
     </td>
   </tr>
-<?php
-      }
+<?php>
+      
       }
  } else {
   echo "0 results";
@@ -114,7 +114,7 @@ if ($result->num_rows > 0) {
     </table>
 <br />
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addActors">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addMovies">
         Add New
       </button>
 
@@ -129,8 +129,8 @@ if ($result->num_rows > 0) {
             <div class="modal-body">
               <form method="post" action="">
                 <div class="mb-3">
-                  <label for="ActorName" class="form-label">Name</label>
-                  <input type="text" class="form-control" id="ActorName" aria-describedby="nameHelp" name="iName">
+                  <label for="MovieName" class="form-label">Name</label>
+                  <input type="text" class="form-control" id="MovieName" aria-describedby="nameHelp" name="iName">
                   <div id="nameHelp" class="form-text">Enter the Movie name.</div>
                 </div>
                 <input type="hidden" name="saveType" value="Add">
