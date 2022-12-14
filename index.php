@@ -23,7 +23,7 @@
           <a class="nav-link" href="director.php">Director</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="theater.php">Theather</a>
+          <a class="nav-link" href="theater.php">Theater</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="movie.php">Movie</a>
