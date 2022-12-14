@@ -34,43 +34,4 @@
 </nav>
   </head>
   <body>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php
-$servername = "localhost";
-$username = "russtayl_user";
-$password = "RussTaylor2000";
-$dbname = "russtayl_sample";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
-
-$sql = "SELECT * from Movies";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-  // output data of each row
-  while($row = $result->fetch_assoc()) {
-?>
-  <tr>
-    <td><?=$row["MovieID"]?></td>
-    <td><?=$row["MovieName"]?></td>
-  </tr>
-<?php
-  }
-} else {
-  echo "0 results";
-}
-$conn->close();
-?>
-  
+    <h1 class="alert alert-primary"> Welcome to Homework 4</h1>
