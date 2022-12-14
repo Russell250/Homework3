@@ -115,8 +115,8 @@ if ($result->num_rows > 0) {
   </tbody>
     </table>
 <br />
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addMovies">
+       <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addActors">
         Add New
       </button>
 
@@ -132,8 +132,8 @@ if ($result->num_rows > 0) {
               <form method="post" action="">
                 <div class="mb-3">
                   <label for="MovieName" class="form-label">Name</label>
-                  <input type="text" class="form-control" id="MovieName" aria-describedby="nameHelp" name="iName">
-                  <div id="nameHelp" class="form-text">Enter the Movie name.</div>
+                  <input type="text" class="form-control" id="ActorName" aria-describedby="nameHelp" name="iName">
+                  <div id="nameHelp" class="form-text">Enter the Movie's name.</div>
                 </div>
                 <input type="hidden" name="saveType" value="Add">
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -144,7 +144,6 @@ if ($result->num_rows > 0) {
       </div>
     </div>
 
-  </body>
 <?
 $conn->close();
 ?>
