@@ -94,7 +94,7 @@ $dbname = "russtayl_sample";
             <select class="form-select" aria-label="Select product" id=" POSTID  " name="ID">
        
         <?php
-            $sql = "select ActorName from Actors";
+            $sql = "select * from Actors";
             $result = $conn->query($sql);
             while($row = $result->fetch_assoc()) 
            {
