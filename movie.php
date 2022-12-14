@@ -97,10 +97,7 @@ if ($result->num_rows > 0) {
                 <input type="hidden" name="saveType" value="Delete">
                 <input type="submit" class="btn" onclick="return confirm('Are you sure?')" value="Delete">
               </form>
-      <form method="post" action="movie-actor.php">
-        <input type="hidden" name="id" value="<?=$row["MovieID"]?>" />
-        <input type="submit" value="Movies"/>
-      </form>
+    
     </td>
   </tr>
 <?php>
