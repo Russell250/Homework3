@@ -49,7 +49,7 @@ if ($conn->connect_error) {
 }
 ?>         
 <?php
-$sql = "SELECT * from Theaters";
+$sql = "SELECT TheaterID, TheaterName, TheaterLocation from Theaters";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
