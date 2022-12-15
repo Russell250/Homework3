@@ -98,7 +98,7 @@ if ($result->num_rows > 0) {
         $selText = "";
       }
 ?>
-  <option value="<?=$row['TheaterID']?>"<?=$selText?>><?=$locationRow['TheaterLocation']?></option>
+  <option value="<?=$row['TheaterID']?>"<?=$selText?>><?=$row['TheaterLocation']?></option>
 <?php
                 
             }
