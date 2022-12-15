@@ -9,17 +9,17 @@
     <table class="table table-striped">
   <thead>
     <tr>
-      <th>Manager ID</th>
-      <th>Manager Name</th>
-      <th>Supervisor ID</th>
+       <th>ID</th>
+      <th>Name</th>
+        <th>Location</th>
     </tr>
   </thead>
   <tbody>
-<?php
-$servername = "localhost:3306";
-$username = "jeffreyn_user1";
-$password = "0w_zeP}]OVy0";
-$dbname = "jeffreyn_homework3";
+    <?php
+$servername = "localhost";
+$username = "russtayl_user";
+$password = "RussTaylor2000";
+$dbname = "russtayl_sample";
     
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -30,31 +30,31 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   switch ($_POST['saveType']) {
     case 'Add':
-      $sqlAdd = "insert into Manager (manager_name, supervisor_ID) value (?,?)";
+      $sqlAdd = "insert into Theaters (TheaterName, TheaterLocation) value (?,?)";
       $stmtAdd = $conn->prepare($sqlAdd);
-      $stmtAdd->bind_param("si", $_POST['mName'], $_POST['sid']);
+      $stmtAdd->bind_param("sS", $_POST['mName'], $_POST['sid']);
       $stmtAdd->execute();
-      echo '<div class="alert alert-success" role="alert">New Manager added.</div>';
+      echo '<div class="alert alert-success" role="alert">New Theater added.</div>';
       break;
     case 'Edit':
-      $sqlEdit = "update Manager set manager_name=?, supervisor_ID=? where manager_id=?";
+      $sqlEdit = "update Theaters set TheaterName=?, TheaterLocation=? where TheaterID=?";
       $stmtEdit = $conn->prepare($sqlEdit);
-      $stmtEdit->bind_param("sii", $_POST['mName'], $_POST['sid'], $_POST['mid']);
+      $stmtEdit->bind_param("ssi", $_POST['mName'], $_POST['sid'], $_POST['mid']);
       $stmtEdit->execute();
-      echo '<div class="alert alert-success" role="alert">Manager edited.</div>';
+      echo '<div class="alert alert-success" role="alert">Theater edited.</div>';
       break;
     case 'Delete':
-      $sqlDelete = "delete from Manager where manager_id=?";
+      $sqlDelete = "delete from Theaters where TheaterID=?";
       $stmtDelete = $conn->prepare($sqlDelete);
       $stmtDelete->bind_param("i", $_POST['mid']);
       $stmtDelete->execute();
-      echo '<div class="alert alert-success" role="alert">Manager deleted.</div>';
+      echo '<div class="alert alert-success" role="alert">Theater deleted.</div>';
       break;
   }
 }
 ?>         
 <?php
-$sql = "SELECT manager_id, manager_name, supervisor_id from Manager";
+$sql = "SELECT TheaterID, TheaterName, TheaterLocation from Theaters";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -63,52 +63,44 @@ if ($result->num_rows > 0) {
 ?>
           
           <tr>
-            <td><?=$row["manager_id"]?></td>
-            <td><a href="managerfile.php?id=<?=$row["manager_id"]?>"><?=$row["manager_name"]?></a></td>
-            <td><?=$row["supervisor_id"]?></td>
+            <td><?=$row["TheaterName"]?></td>
+            <td><?=$row["TheaterLocation"]?></td>
             <td>
-            <form method="post" action="managercust.php">
-            <input type="hidden" name="id" value="<?=$row["manager_id"]?>" />
-             <input type="submit" value="Manager Sells" />
-            </form>
-           </td>
-            <td>
-              <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#editManager<?=$row["manager_id"]?>">
+              <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#editTheater<?=$row["TheaterID"]?>">
                 Edit
               </button>
-              <div class="modal fade" id="editManager<?=$row["manager_id"]?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editManager<?=$row["manager_id"]?>Label" aria-hidden="true">
-                <div class="modal-dialog">
+              <div class="modal fade" id="editTheater<?=$row["TheaterID"]?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editTheater<?=$row["TheaterID"]?>Label" aria-hidden="true">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="editManager<?=$row["manager_id"]?>Label">Edit Manager</h1>
+                      <h1 class="modal-title fs-5" id="editTheater<?=$row["TheaterID"]?>Label">Edit Theater</h1>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                       <form method="post" action="">
                         <div class="mb-3">
-                          <label for="editManager<?=$row["manager_id"]?>Name" class="form-label">Name</label>
-                          <input type="text" class="form-control" id="editManager<?=$row["manager_id"]?>Name" aria-describedby="editManager<?=$row["manager_id"]?>Help" name="mName" value="<?=$row['manager_name']?>">
-                          <div id="editInstructor<?=$row["manager_id"]?>Help" class="form-text">Enter the Manager's name.</div>
+                          <label for="editTheater<?=$row["TheaterID"]?>Name" class="form-label">Theater Name</label>
+                          <input type="text" class="form-control" id="editTheater<?=$row["TheaterID"]?>Name" aria-describedby="editTheater<?=$row["TheaterID"]?>Help" name="mName" value="<?=$row['TheaterName']?>">
+                          <div id="editTheater<?=$row["TheaterID"]?>Help" class="form-text">Enter the Theater's name.</div>
                           <div class="mb-3">
-                          <label for="supervisorList" class="form-label">Supervisor</label>
-                          <select class="form-select" aria-label="Select Supervisor" id="supervisorList" name="sid">
+                          <label for="locationList" class="form-label">Location</label>
+                          <select class="form-select" aria-label="Select Location" id="locationList" name="sid">
                           <?php
-                       $supervisorSql = "select * from Supervisor order by supervisor_name";
-    $supervisorResult = $conn->query($supervisorSql);
-    while($supervisorRow = $supervisorResult->fetch_assoc()) {
-      if ($supervisorRow['supervisor_ID'] == $row['supervisor_ID']) {
+                       $Sql = "select * from Theaters order by TheaterLocation";
+    $result = $conn->query($Sql);
+    while($Row = $result->fetch_assoc()) {
+      if ($Row['TheaterID'] == $Row['TheaterID']) {
         $selText = " selected";
       } else {
         $selText = "";
       }
 ?>
-  <option value="<?=$supervisorRow['supervisor_ID']?>"<?=$selText?>><?=$supervisorRow['supervisor_name']?></option>
+  <option value="<?=$Row['TheaterID']?>"<?=$selText?>><?=$Row['TheaterLocation']?></option>
 <?php
     }
 ?>
                             </select>
                         </div>
-                        <input type="hidden" name="mid" value="<?=$row['manager_id']?>">
+                        <input type="hidden" name="mid" value="<?=$row['TheaterID']?>">
                         <input type="hidden" name="saveType" value="Edit">
                         <input type="submit" class="btn btn-primary" value="Submit">
                       </form>
@@ -119,7 +111,7 @@ if ($result->num_rows > 0) {
             </td>
             <td>
               <form method="post" action="">
-                <input type="hidden" name="mid" value="<?=$row["manager_id"]?>" />
+                <input type="hidden" name="mid" value="<?=$row["TheaterID"]?>" />
                 <input type="hidden" name="saveType" value="Delete">
                 <input type="submit" class="btn" onclick="return confirm('Are you sure?')" value="Delete">
               </form>
@@ -138,30 +130,27 @@ $conn->close();
       </table>
       <br />
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addManager">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTheater">
         Add New
       </button>
 
       <!-- Modal -->
-      <div class="modal fade" id="addManager" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addManagerLabel" aria-hidden="true">
+      <div class="modal fade" id="addTheater" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addTheaterLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="addManagerLabel">Add Manager</h1>
+              <h1 class="modal-title fs-5" id="addTheaterLabel">Add Theater</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <form method="post" action="">
                 <div class="mb-3">
-                  <label for="managerName" class="form-label">Name</label>
+                  <label for="TheaterName" class="form-label">Theater Name</label>
                   <input type="text" class="form-control" id="mName" aria-describedby="nameHelp" name="mName">
-                  <div id="nameHelp" class="form-text">Enter the Manager's name.</div>
-                  <label for="supervisorID" class="form-label">Supervisor ID</label>
-                  <input type="text" class="form-control" id="sid" aria-describedby="nameHelp" name="sid">
-                  <div id="nameHelp" class="form-text">Enter the Supervisor's ID.</div>
-                  <label for="supervisorName" class="form-label">Supervisor Name</label>
+                    <div id="nameHelp" class="form-text">Enter the Theater's name.</div>
+                  <label for="TheaterLocation" class="form-label">Theater Location</label>
                   <input type="text" class="form-control" id="sName" aria-describedby="nameHelp" name="sName">
-                  <div id="nameHelp" class="form-text">Enter the Supervisor's name.</div>
+                  <div id="nameHelp" class="form-text">Enter the Theator's location.</div>
                 </div>
                 <input type="hidden" name="saveType" value="Add">
                 <button type="submit" class="btn btn-primary">Submit</button>
