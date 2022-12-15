@@ -66,7 +66,7 @@ if ($result->num_rows > 0) {
     <td><?=$row["TheaterName"]?></td>
     <td><?=$row["TheaterLocation"]?></td>
     <td>
-         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#editActors<?=$row["TheaterID"]?>">
+         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#editTheater<?=$row["TheaterID"]?>">
                 Edit
               </button>
               <div class="modal fade" id="editTheater<?=$row["TheaterID"]?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editTheater<?=$row["TheaterId"]?>Label" aria-hidden="true">
