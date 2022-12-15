@@ -33,14 +33,14 @@ if ($conn->connect_error) {
     case 'Add':
       $sqlAdd = "insert into Theaters (TheaterName, TheaterLocation) value (?,?)";
       $stmtAdd = $conn->prepare($sqlAdd);
-      $stmtAdd->bind_param("ss", $_POST['iName'], $_POST['lid']);
+      $stmtAdd->bind_param("ss", $_POST['iName'], $_POST['loc']);
       $stmtAdd->execute();
       echo '<div class="alert alert-success" role="alert">New Theater added.</div>';
       break;
     case 'Edit':
       $sqlEdit = "update Theaters set TheaterName=?, TheaterLocation=? where TheaterID=?";
       $stmtEdit = $conn->prepare($sqlEdit);
-      $stmtEdit->bind_param("ssi", $_POST['tName'], $_POST['lid'], $_POST['iid']);
+      $stmtEdit->bind_param("ssi", $_POST['tName'], $_POST['loc'], $_POST['iid']);
       $stmtEdit->execute();
       echo '<div class="alert alert-success" role="alert">Theater edited.</div>';
       break;
@@ -86,7 +86,7 @@ if ($result->num_rows > 0) {
                           <div id="editTheater<?=$row["TheaterID"]?>Help" class="form-text">Enter the Theater's name.</div
                               <div class="mb-3">
                            <label for="locationList" class="form-label">Location</label>
-                          <select class="form-select" aria-label="Select Location" id="locationList" name="lid">
+                          <select class="form-select" aria-label="Select Location" id="locationList" name="loc">
                           <?php
        
             $sql = "select * from Theaters order by TheaterLocation";
@@ -153,7 +153,7 @@ if ($result->num_rows > 0) {
                   <input type="text" class="form-control" id="iName" aria-describedby="nameHelp" name="iName">
                   <div id="nameHelp" class="form-text">Enter the Theater's name.</div>
                   <label for="supervisorID" class="form-label">Theater Location</label>
-                  <input type="text" class="form-control" id="lid" aria-describedby="nameHelp" name="lid">
+                  <input type="text" class="form-control" id="loc" aria-describedby="nameHelp" name="loc">
                   <div id="nameHelp" class="form-text">Enter the Theater's Location.</div>
                 </div>
                 <input type="hidden" name="saveType" value="Add">
