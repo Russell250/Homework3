@@ -25,21 +25,21 @@ if ($conn->connect_error) {
       if ($_SERVER["REQUEST_METHOD"] == "POST") {
   switch ($_POST['saveType']) {
     case 'Add':
-      $sqlAdd = "insert into Theaters (TheaterName, TheaterLocation) value (?,?)";
+      $sqlAdd = "insert into Theater (TheaterName, TheaterLocation) value (?,?)";
       $stmtAdd = $conn->prepare($sqlAdd);
       $stmtAdd->bind_param("ss", $_POST['iName'], $_POST['loc']);
       $stmtAdd->execute();
       echo '<div class="alert alert-success" role="alert">New Theater added.</div>';
       break;
     case 'Edit':
-      $sqlEdit = "update Theaters set TheaterName=?, TheaterLocation=? where TheaterID=?";
+      $sqlEdit = "update Theater set TheaterName=?, TheaterLocation=? where TheaterID=?";
       $stmtEdit = $conn->prepare($sqlEdit);
       $stmtEdit->bind_param("ssi", $_POST['tName'], $_POST['loc'], $_POST['iid']);
       $stmtEdit->execute();
       echo '<div class="alert alert-success" role="alert">Theater edited.</div>';
       break;
     case 'Delete':
-      $sqlDelete = "delete from Theaters where TheaterID=?";
+      $sqlDelete = "delete from Theater where TheaterID=?";
       $stmtDelete = $conn->prepare($sqlDelete);
       $stmtDelete->bind_param("i", $_POST['iid']);
       $stmtDelete->execute();
@@ -49,7 +49,7 @@ if ($conn->connect_error) {
 }
 ?>         
 <?php
-$sql = "SELECT TheaterID, TheaterName, TheaterLocation from Theaters";
+$sql = "SELECT TheaterID, TheaterName, TheaterLocation from Theater";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -83,7 +83,7 @@ if ($result->num_rows > 0) {
                           <select class="form-select" aria-label="Select Location" id="locationList" name="loc">
                           <?php
        
-            $sql = "select * from Theaters order by TheaterLocation";
+            $sql = "select * from Theater order by TheaterLocation";
             $result = $conn->query($sql);
             while($row = $result->fetch_assoc()) {
       if ($row['TheaterID'] == $row['TheaterID']) {
