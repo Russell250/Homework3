@@ -53,7 +53,8 @@ if ($conn->connect_error) {
       break;
   }
 }
-
+?>         
+<?php
 $sql = "SELECT * from Theaters";
 $result = $conn->query($sql);
 
@@ -73,7 +74,7 @@ if ($result->num_rows > 0) {
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="editTheater<?=$row["Theater"]?>Label">Edit Theater</h1>
+                      <h1 class="modal-title fs-5" id="editTheater<?=$row["TheaterID"]?>Label">Edit Theater</h1>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -97,7 +98,7 @@ if ($result->num_rows > 0) {
         $selText = "";
       }
 ?>
-  <option value="<?=$locationRow['TheaterID']?>"<?=$selText?>><?=$locationRow['TheaterLocation']?></option>
+  <option value="<?=$row['TheaterID']?>"<?=$selText?>><?=$locationRow['TheaterLocation']?></option>
 <?php
                 
             }
